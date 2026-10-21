@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: miniflux
+  namespace: miniflux
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: miniflux.lab.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: { name: miniflux, port: { number: 80 } }
